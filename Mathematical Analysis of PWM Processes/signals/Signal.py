@@ -5,7 +5,9 @@ from scipy import signal
 
 
 class Signal:
-    def __init__(self, amplitude: float = 1, frequency: float = 1, angular_frequency: float = None, offset: float = 0):
+    def __init__(self, amplitude: float = 1, frequency: float = 1, angular_frequency: float = None, offset: float = 0,
+                 phi: float = 0):
+
         self.out = []
         self.t = []
 
@@ -20,6 +22,7 @@ class Signal:
         self.period = 1 / frequency
         self.offset = offset
         self.fun = lambda x: x
+        self.phi = np.deg2rad(phi)
 
     def output(self, t=None):
         if t is None:
@@ -29,14 +32,20 @@ class Signal:
 
 
 class SineSignal(Signal):
-    def __init__(self, amplitude: float = 1, frequency: float = 1, angular_frequency: float = None, offset: float = 0):
-        Signal.__init__(self, amplitude, frequency, angular_frequency, offset)
-        self.fun = lambda t: self.amplitude * np.sin(self.angular_frequency * t)
+    def __init__(self, amplitude: float = 1, frequency: float = 1, angular_frequency: float = None, offset: float = 0,
+                 phi: float = 0, time: list = None):
+        Signal.__init__(self, amplitude, frequency, angular_frequency, offset, phi)
+        self.fun = lambda t: self.amplitude * np.sin(self.angular_frequency * t + self.phi)
+        if time is not None:
+            self.output(time)
 
 
 class CarrierSignal(Signal):
     def __init__(self, amplitude: float = 1, frequency: float = 1, angular_frequency: float = None, offset: float = 0,
-                 width: float = 0.5):
-        Signal.__init__(self, amplitude, frequency, angular_frequency, offset)
+                 width: float = 0.5, phi: float = 0, time: list = None):
+        Signal.__init__(self, amplitude, frequency, angular_frequency, offset, phi)
         self.width = width
         self.fun = lambda t: self.amplitude * signal.sawtooth(self.angular_frequency, self.width)
+
+        if time is not None:
+            self.output(time)
