@@ -5,9 +5,9 @@ phi = np.pi * 2 / 3
 
 
 def park_matrix(theta: float) -> np.array:
-    return np.sqrt(2 / 3) * np.array([[np.sin(theta), np.sin(theta - phi), np.sin(theta + phi)],
-                                      [np.cos(theta), np.cos(theta - phi), np.cos(theta + phi)],
-                                      np.sqrt(1 / 2) * np.ones(3)])
+    return np.array([[np.cos(theta), np.sin(theta), 0],
+                     [-np.sin(theta), np.cos(theta), 0],
+                     [0, 0, 1]])
 
 
 def inv_park_matrix(theta: float) -> np.array:
