@@ -29,6 +29,7 @@ class Signal:
             return self.out
         self.t = t
         self.out = self.fun(t) + self.offset
+        return self.out
 
 
 class SineSignal(Signal):
