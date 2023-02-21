@@ -10,7 +10,7 @@ class Triphasic:
         self.t = time
         self.out = np.array([self.Vu.out, self.Vv.out, self.Vw.out])
         
-    def output(self, t=None):
+    def output(self, t=None) -> np.array:
         if t is None:
             return self.out
         self.t = t
