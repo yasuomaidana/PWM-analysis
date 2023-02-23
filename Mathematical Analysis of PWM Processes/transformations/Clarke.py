@@ -4,7 +4,7 @@ import numpy as np
 from numpy import linalg
 
 # Here we calculate the POWER invariant transformation
-clarke_matrix = np.sqrt(2/3) * np.array(
+clarke_matrix = np.sqrt(2 / 3) * np.array(
     [[1, -1 / 2, -1 / 2],
      [0, math.sqrt(3) / 2, -math.sqrt(3) / 2],
      1.0 / math.sqrt(2) * np.ones(3)])
@@ -16,4 +16,4 @@ def clark(input_signal: np.array) -> np.array:
 
 
 def inv_clark(input_signal: np.array) -> np.array:
-    return inverse_clarke_matrix * input_signal
+    return np.matmul(inverse_clarke_matrix, input_signal)
