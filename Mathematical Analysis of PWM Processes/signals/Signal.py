@@ -46,7 +46,7 @@ class CarrierSignal(Signal):
                  width: float = 0.5, phi: float = 0, time: list = None):
         Signal.__init__(self, amplitude, frequency, angular_frequency, offset, phi)
         self.width = width
-        self.fun = lambda t: self.amplitude * signal.sawtooth(self.angular_frequency, self.width)
+        self.fun = lambda t: self.amplitude * signal.sawtooth(self.angular_frequency*t, self.width)
 
         if time is not None:
             self.output(time)
