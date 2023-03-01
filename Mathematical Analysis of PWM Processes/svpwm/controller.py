@@ -1,3 +1,6 @@
+from time_calculation import time_calculator
+
+
 class Controller:
     def __init__(self, device_frequency: float, switching_frequency: float, time_step: float):
         self.device_frequency = device_frequency
