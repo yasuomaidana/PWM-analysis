@@ -1,4 +1,4 @@
-from signals.Signal import SineSignal
+from models.signals.Signal import SineSignal
 import numpy as np
 import matplotlib.pyplot as plt
 from transformations.Clarke import clark

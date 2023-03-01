@@ -1,5 +1,5 @@
 import numpy as np
-from signals.Signal import CarrierSignal, SineSignal
+from models.signals.Signal import CarrierSignal, SineSignal
 import matplotlib.pyplot as plt
 from transformations.sampling import natural_sampling, asymmetrical_sampling, symmetrical_sampling
 

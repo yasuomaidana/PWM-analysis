@@ -1,10 +1,6 @@
-from signals.Signal import SineSignal
-
-from models.Triphasic import Triphasic
 import numpy as np
 from transformations.Park import inv_park
 from transformations.Clarke import inv_clark
-import matplotlib.pyplot as plt
 
 pi = np.pi
 simulation_time = 3

@@ -1,12 +1,10 @@
-from signals.Signal import Signal
 
-
-def natural_sampling(carrier_signal: Signal, modulated_signal: Signal):
+def natural_sampling(carrier_signal, modulated_signal):
     output = [-1 if carrier > modulated else 1 for carrier, modulated in zip(carrier_signal.out, modulated_signal.out)]
     return output
 
 
-def uniform_sampling(carrier_signal: Signal, modulated_signal: Signal, enable_read, read):
+def uniform_sampling(carrier_signal, modulated_signal, enable_read, read):
     output = []
     old_value = 0
     old_delta = 0
@@ -35,7 +33,7 @@ def uniform_sampling(carrier_signal: Signal, modulated_signal: Signal, enable_re
     return output, sampled
 
 
-def symmetrical_sampling(carrier_signal: Signal, modulated_signal: Signal):
+def symmetrical_sampling(carrier_signal, modulated_signal):
     def read(read_enabled, ym, y, old_value, hold):
         if old_value > ym > y:
             hold = ym
@@ -50,7 +48,7 @@ def symmetrical_sampling(carrier_signal: Signal, modulated_signal: Signal):
     return uniform_sampling(carrier_signal, modulated_signal, enable_read, read)
 
 
-def asymmetrical_sampling(carrier_signal: Signal, modulated_signal: Signal):
+def asymmetrical_sampling(carrier_signal, modulated_signal):
     def read(read_enabled, ym, y, old_value, hold):
         if old_value > ym > y or old_value < ym < y:
             hold = ym

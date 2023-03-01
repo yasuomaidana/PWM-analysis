@@ -1,4 +1,4 @@
-from signals.Signal import SineSignal
+from models.signals.Signal import SineSignal
 
 from models.Triphasic import Triphasic
 import numpy as np
@@ -6,10 +6,13 @@ from transformations.Park import park
 from transformations.Clarke import clark
 import matplotlib.pyplot as plt
 
-def d_polar(theta,vd):
-    return np.cos(theta)*vd, np.sin(theta)*vd
-def q_polar(theta,vq):
-    return -np.sin(theta)*vq, np.cos(theta)*vq
+
+def d_polar(theta, vd):
+    return np.cos(theta) * vd, np.sin(theta) * vd
+
+
+def q_polar(theta, vq):
+    return -np.sin(theta) * vq, np.cos(theta) * vq
 
 
 pi = np.pi
@@ -39,13 +42,13 @@ if not (clark_transformed == sys_clark_transformed).all():
 
 theta = Vu.angular_frequency * t
 
-theta2 = np.arctan2(beta, alpha) # + np.pi / 2
+theta2 = np.arctan2(beta, alpha)  # + np.pi / 2
 
 vd, vq, vo = park(theta, sys_clark_transformed)
 vd2, vq2, vo2 = park(theta2, sys_clark_transformed)
 
-dxy_polar = [d_polar(theta_val,vd_val) for theta_val, vd_val in zip(theta,vd)]
-qxy_polar = [q_polar(theta_val,vq_val) for theta_val, vq_val in zip(theta,vq)]
+dxy_polar = [d_polar(theta_val, vd_val) for theta_val, vd_val in zip(theta, vd)]
+qxy_polar = [q_polar(theta_val, vq_val) for theta_val, vq_val in zip(theta, vq)]
 
 dx, dy = dxy_polar[0]
 qx, qy = qxy_polar[0]

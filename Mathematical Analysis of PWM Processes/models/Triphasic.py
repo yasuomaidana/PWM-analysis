@@ -1,5 +1,5 @@
 import numpy as np
-from signals.Signal import SineSignal
+from .signals.Signal import SineSignal
 
 
 class Triphasic:
