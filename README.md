@@ -9,3 +9,6 @@ I created some libraries, so in order to run some code you should install them f
 package and run
 `python setup.py bdist_wheel`
 then `pip install /path/to/wheelfile.whl`
+
+Or just run
+`python setup_[library].py install`
